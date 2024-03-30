@@ -392,5 +392,24 @@
       "prompt": "content"
     },
     "folder": "python"
+  },
+  "train_1400_from_expert_revision": {
+    "file_name": "train_1400_from_expert_revision.json",
+    "file_sha1": "",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output"
+    }
+  },
+  "infer_520_from_train_1400": {
+    "file_name": "infer_520_from_train_1400.json",
+    "file_sha1": "",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output"
+    }
   }
+
 }

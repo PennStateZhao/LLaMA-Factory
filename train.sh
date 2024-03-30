@@ -1,0 +1,21 @@
+    CUDA_VISIBLE_DEVICES=0 /home/z30032394/miniconda3/envs/py10_env/bin/python src/train_bash.py \
+    --stage sft \
+    --do_train \
+    --model_name_or_path ../glm2 \
+    --dataset train_1400_from_expert_revision \
+    --template chatglm2 \
+    --finetuning_type lora \
+    --output_dir save_ckpts/train_1400 \
+    --overwrite_cache \
+    --per_device_train_batch_size 4 \
+    --gradient_accumulation_steps 8 \
+    --lr_scheduler_type cosine \
+    --logging_steps 10 \
+    --save_strategy "epoch"\
+    --learning_rate 4e-4 \
+    --num_train_epochs 10.0 \
+    --plot_loss \
+    --fp16\
+    --lora_rank 64 \
+    --lora_alpha 32 \
+    --lora_target "query_key_value,dense,dense_h_to_4h,dense_4h_to_h" \
