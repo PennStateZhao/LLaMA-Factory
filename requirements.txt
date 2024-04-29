@@ -16,3 +16,6 @@ sse-starlette
 matplotlib
 fire
 galore-torch
+jieba
+nltk
+rouge-chinese

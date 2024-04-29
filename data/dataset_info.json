@@ -393,6 +393,24 @@
     },
     "folder": "python"
   },
+  "train_720_from_expert_revision_r3": {
+    "file_name": "train_720_from_expert_revision_r3.json",
+    "file_sha1": "",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output"
+    }
+  },
+  "infer_520_from_train_720_r3": {
+    "file_name": "infer_520_from_train_720_r3.json",
+    "file_sha1": "",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output"
+    }
+  },
   "train_1400_from_expert_revision": {
     "file_name": "train_1400_from_expert_revision.json",
     "file_sha1": "",
@@ -410,6 +428,32 @@
       "query": "input",
       "response": "output"
     }
+  },
+  "train_52k_alpaca_original": {
+    "file_name": "train_52k_alpaca_original.json",
+    "file_sha1": "",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output"
+    }
+  },
+  "train_52k_alpaca_original": {
+    "file_name": "train_52k_alpaca_original.json",
+    "file_sha1": "",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output"
+    }
+  },
+  "CoachLM150_test_set": {
+    "file_name": "CoachLM150_test_set.json",
+    "file_sha1": "",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output"
+    }
   }
-
 }

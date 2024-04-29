@@ -1,11 +1,11 @@
-    CUDA_VISIBLE_DEVICES=0 /home/z30032394/miniconda3/envs/py10_env/bin/python src/train_bash.py \
+    CUDA_VISIBLE_DEVICES=0 python src/train_bash.py \
     --stage sft \
     --do_train \
     --model_name_or_path ../glm2 \
-    --dataset train_1400_from_expert_revision \
+    --dataset train_720_from_expert_revision_r3 \
     --template chatglm2 \
     --finetuning_type lora \
-    --output_dir save_ckpts/train_1400 \
+    --output_dir save_ckpts/train_720_from_expert_revision_r3 \
     --overwrite_cache \
     --per_device_train_batch_size 4 \
     --gradient_accumulation_steps 8 \
