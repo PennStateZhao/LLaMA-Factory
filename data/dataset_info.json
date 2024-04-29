@@ -144,31 +144,12 @@
     "ms_hub_url": "AI-ModelScope/MathInstruct",
     "columns": {
       "prompt": "instruction",
-      "response": "output"
-    }
-  },
-  "firefly": {
-    "hf_hub_url": "YeungNLP/firefly-train-1.1M",
+  "infer_data": {
+    "file_name": "infer_data.json",
+    "file_sha1": "",
     "columns": {
-      "prompt": "input",
-      "response": "target"
-    }
-  },
-  "wikiqa": {
-    "hf_hub_url": "wiki_qa",
-    "columns": {
-      "prompt": "question",
-      "response": "answer"
-    }
-  },
-  "webqa": {
-    "hf_hub_url": "suolyer/webqa",
-    "ms_hub_url": "AI-ModelScope/webqa",
-    "columns": {
-      "prompt": "input",
-      "response": "output"
-    }
-  },
+      "prompt": "instruction",
+      "query": "input",
   "webnovel": {
     "hf_hub_url": "zxbsmk/webnovel_cn",
     "ms_hub_url": "AI-ModelScope/webnovel_cn"

@@ -14,4 +14,3 @@ CUDA_VISIBLE_DEVICES=0 python src/train_bash.py \
     --lora_rank 64 \
     --lora_alpha 32 \
     --lora_target "query_key_value,dense,dense_h_to_4h,dense_4h_to_h"
-
