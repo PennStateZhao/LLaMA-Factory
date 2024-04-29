@@ -1,13 +1,15 @@
 from typing import TYPE_CHECKING, Dict, Tuple
 
-import gradio as gr
-
 from ...data import Role
+from ...extras.packages import is_gradio_available
 from ..utils import check_json_schema
 
 
+if is_gradio_available():
+    import gradio as gr
+
+
 if TYPE_CHECKING:
-    from gradio.blocks import Block
     from gradio.components import Component
 
     from ..engine import Engine
@@ -15,15 +17,21 @@ if TYPE_CHECKING:
 
 def create_chat_box(
     engine: "Engine", visible: bool = False
-) -> Tuple["Block", "Component", "Component", Dict[str, "Component"]]:
-    with gr.Box(visible=visible) as chat_box:
-        chatbot = gr.Chatbot()
+) -> Tuple["Component", "Component", Dict[str, "Component"]]:
+    with gr.Column(visible=visible) as chat_box:
+        chatbot = gr.Chatbot(show_copy_button=True)
         messages = gr.State([])
         with gr.Row():
             with gr.Column(scale=4):
-                role = gr.Dropdown(choices=[Role.USER.value, Role.OBSERVATION.value], value=Role.USER.value)
-                system = gr.Textbox(show_label=False)
-                tools = gr.Textbox(show_label=False, lines=2)
+                with gr.Row():
+                    with gr.Column():
+                        role = gr.Dropdown(choices=[Role.USER.value, Role.OBSERVATION.value], value=Role.USER.value)
+                        system = gr.Textbox(show_label=False)
+                        tools = gr.Textbox(show_label=False, lines=3)
+
+                    with gr.Column() as image_box:
+                        image = gr.Image(sources=["upload"], type="numpy")
+
                 query = gr.Textbox(show_label=False, lines=8)
                 submit_btn = gr.Button(variant="primary")
 
@@ -33,25 +41,29 @@ def create_chat_box(
                 temperature = gr.Slider(0.01, 1.5, value=0.95, step=0.01)
                 clear_btn = gr.Button()
 
-    tools.input(check_json_schema, [tools, engine.manager.get_elem_by_name("top.lang")])
+    tools.input(check_json_schema, inputs=[tools, engine.manager.get_elem_by_id("top.lang")])
 
     submit_btn.click(
-        engine.chatter.predict,
-        [chatbot, role, query, messages, system, tools, max_new_tokens, top_p, temperature],
+        engine.chatter.append,
+        [chatbot, messages, role, query],
+        [chatbot, messages, query],
+    ).then(
+        engine.chatter.stream,
+        [chatbot, messages, system, tools, image, max_new_tokens, top_p, temperature],
         [chatbot, messages],
-        show_progress=True,
-    ).then(lambda: gr.update(value=""), outputs=[query])
-
-    clear_btn.click(lambda: ([], []), outputs=[chatbot, messages], show_progress=True)
+    )
+    clear_btn.click(lambda: ([], []), outputs=[chatbot, messages])
 
     return (
-        chat_box,
         chatbot,
         messages,
         dict(
+            chat_box=chat_box,
             role=role,
             system=system,
             tools=tools,
+            image_box=image_box,
+            image=image,
             query=query,
             submit_btn=submit_btn,
             max_new_tokens=max_new_tokens,

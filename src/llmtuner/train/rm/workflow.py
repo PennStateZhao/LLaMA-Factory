@@ -2,13 +2,12 @@
 
 from typing import TYPE_CHECKING, List, Optional
 
-from ...data import get_dataset, split_dataset
+from ...data import PairwiseDataCollatorWithPadding, get_dataset, split_dataset
 from ...extras.callbacks import FixValueHeadModelCallback
 from ...extras.misc import fix_valuehead_checkpoint
 from ...extras.ploting import plot_loss
 from ...model import load_model, load_tokenizer
 from ..utils import create_modelcard_and_push
-from .collator import PairwiseDataCollatorWithPadding
 from .metric import compute_accuracy
 from .trainer import PairwiseTrainer
 
@@ -26,8 +25,9 @@ def run_rm(
     finetuning_args: "FinetuningArguments",
     callbacks: Optional[List["TrainerCallback"]] = None,
 ):
-    tokenizer = load_tokenizer(model_args)
-    dataset = get_dataset(tokenizer, model_args, data_args, training_args, stage="rm")
+    tokenizer_module = load_tokenizer(model_args)
+    tokenizer = tokenizer_module["tokenizer"]
+    dataset = get_dataset(model_args, data_args, training_args, stage="rm", **tokenizer_module)
     model = load_model(tokenizer, model_args, finetuning_args, training_args.do_train, add_valuehead=True)
     data_collator = PairwiseDataCollatorWithPadding(tokenizer, pad_to_multiple_of=8)
 
@@ -56,7 +56,7 @@ def run_rm(
         trainer.save_metrics("train", train_result.metrics)
         trainer.save_state()
         if trainer.is_world_process_zero() and finetuning_args.plot_loss:
-            plot_loss(training_args.output_dir, keys=["loss", "eval_loss"])
+            plot_loss(training_args.output_dir, keys=["loss", "eval_loss", "eval_accuracy"])
 
     # Evaluation
     if training_args.do_eval:

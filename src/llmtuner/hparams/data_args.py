@@ -26,11 +26,11 @@ class DataArguments:
     )
     cutoff_len: int = field(
         default=1024,
-        metadata={"help": "The cutoff length of the model inputs after tokenization."},
+        metadata={"help": "The cutoff length of the tokenized inputs in the dataset."},
     )
     reserved_label_len: int = field(
         default=1,
-        metadata={"help": "The minimum cutoff length reserved for label after tokenization."},
+        metadata={"help": "The minimum cutoff length reserved for the tokenized labels in the dataset."},
     )
     train_on_prompt: bool = field(
         default=False,
@@ -84,9 +84,9 @@ class DataArguments:
             "help": "Whether or not to pack the sequences in training. Will automatically enable in pre-training."
         },
     )
-    cache_path: Optional[str] = field(
+    tokenized_path: Optional[str] = field(
         default=None,
-        metadata={"help": "Path to save or load the pre-processed datasets."},
+        metadata={"help": "Path to save or load the tokenized datasets."},
     )
 
     def __post_init__(self):

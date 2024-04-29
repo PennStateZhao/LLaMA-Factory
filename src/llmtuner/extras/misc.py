@@ -83,6 +83,8 @@ def count_parameters(model: torch.nn.Module) -> Tuple[int, int]:
         if param.__class__.__name__ == "Params4bit":
             if hasattr(param, "quant_storage") and hasattr(param.quant_storage, "itemsize"):
                 num_bytes = param.quant_storage.itemsize
+            elif hasattr(param, "element_size"):  # for older pytorch version
+                num_bytes = param.element_size()
             else:
                 num_bytes = 1
 
@@ -192,6 +194,13 @@ def infer_optim_dtype(model_dtype: torch.dtype) -> torch.dtype:
         return torch.float32
 
 
+def has_tokenized_data(path: os.PathLike) -> bool:
+    r"""
+    Checks if the path has a tokenized dataset.
+    """
+    return os.path.isdir(path) and len(os.listdir(path)) > 0
+
+
 def torch_gc() -> None:
     r"""
     Collects GPU memory.
@@ -202,17 +211,15 @@ def torch_gc() -> None:
         torch.cuda.ipc_collect()
 
 
-def try_download_model_from_ms(model_args: "ModelArguments") -> None:
+def try_download_model_from_ms(model_args: "ModelArguments") -> str:
     if not use_modelscope() or os.path.exists(model_args.model_name_or_path):
-        return
+        return model_args.model_name_or_path
 
     try:
         from modelscope import snapshot_download
 
         revision = "master" if model_args.model_revision == "main" else model_args.model_revision
-        model_args.model_name_or_path = snapshot_download(
-            model_args.model_name_or_path, revision=revision, cache_dir=model_args.cache_dir
-        )
+        return snapshot_download(model_args.model_name_or_path, revision=revision, cache_dir=model_args.cache_dir)
     except ImportError:
         raise ImportError("Please install modelscope via `pip install modelscope -U`")
 

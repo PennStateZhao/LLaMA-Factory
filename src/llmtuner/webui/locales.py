@@ -129,6 +129,17 @@ LOCALES = {
             "label": "加速方式",
         },
     },
+    "visual_inputs": {
+        "en": {
+            "label": "Visual inputs",
+        },
+        "ru": {
+            "label": "визуальные входы",
+        },
+        "zh": {
+            "label": "图像输入",
+        },
+    },
     "training_stage": {
         "en": {
             "label": "Stage",
@@ -536,6 +547,20 @@ LOCALES = {
             "info": "使用 LongLoRA 提出的 shift short attention。",
         },
     },
+    "report_to": {
+        "en": {
+            "label": "Enable external logger",
+            "info": "Use TensorBoard or wandb to log experiment.",
+        },
+        "ru": {
+            "label": "Включить внешний регистратор",
+            "info": "Использовать TensorBoard или wandb для ведения журнала экспериментов.",
+        },
+        "zh": {
+            "label": "启用外部记录面板",
+            "info": "使用 TensorBoard 或 wandb 记录实验。",
+        },
+    },
     "freeze_tab": {
         "en": {
             "label": "Freeze tuning configurations",
@@ -628,18 +653,32 @@ LOCALES = {
             "info": "LoRA 权重随机丢弃的概率。",
         },
     },
-    "lora_target": {
+    "loraplus_lr_ratio": {
         "en": {
-            "label": "LoRA modules (optional)",
-            "info": "Name(s) of modules to apply LoRA. Use commas to separate multiple modules.",
+            "label": "LoRA+ LR ratio",
+            "info": "The LR ratio of the B matrices in LoRA.",
         },
         "ru": {
-            "label": "Модули LoRA (опционально)",
-            "info": "Имена модулей для применения LoRA. Используйте запятые для разделения нескольких модулей.",
+            "label": "LoRA+ LR коэффициент",
+            "info": "Коэффициент LR матриц B в LoRA.",
         },
         "zh": {
-            "label": "LoRA 作用模块（非必填）",
-            "info": "应用 LoRA 的模块名称。使用英文逗号分隔多个名称。",
+            "label": "LoRA+ 学习率比例",
+            "info": "LoRA+ 中 B 矩阵的学习率倍数。",
+        },
+    },
+    "create_new_adapter": {
+        "en": {
+            "label": "Create new adapter",
+            "info": "Create a new adapter with randomly initialized weight upon the existing one.",
+        },
+        "ru": {
+            "label": "Создать новый адаптер",
+            "info": "Создать новый адаптер с случайной инициализацией веса на основе существующего.",
+        },
+        "zh": {
+            "label": "新建适配器",
+            "info": "在现有的适配器上创建一个随机初始化后的新适配器。",
         },
     },
     "use_rslora": {
@@ -670,18 +709,18 @@ LOCALES = {
             "info": "使用权重分解的 LoRA。",
         },
     },
-    "create_new_adapter": {
+    "lora_target": {
         "en": {
-            "label": "Create new adapter",
-            "info": "Create a new adapter with randomly initialized weight upon the existing one.",
+            "label": "LoRA modules (optional)",
+            "info": "Name(s) of modules to apply LoRA. Use commas to separate multiple modules.",
         },
         "ru": {
-            "label": "Создать новый адаптер",
-            "info": "Создать новый адаптер с случайной инициализацией веса на основе существующего.",
+            "label": "Модули LoRA (опционально)",
+            "info": "Имена модулей для применения LoRA. Используйте запятые для разделения нескольких модулей.",
         },
         "zh": {
-            "label": "新建适配器",
-            "info": "在现有的适配器上创建一个随机初始化后的新适配器。",
+            "label": "LoRA 作用模块（非必填）",
+            "info": "应用 LoRA 的模块名称。使用英文逗号分隔多个名称。",
         },
     },
     "additional_target": {
@@ -741,6 +780,20 @@ LOCALES = {
         "zh": {
             "label": "DPO-ftx 权重",
             "info": "DPO-ftx 中 SFT 损失的权重大小。",
+        },
+    },
+    "orpo_beta": {
+        "en": {
+            "label": "ORPO beta",
+            "info": "Value of the beta parameter in the ORPO loss.",
+        },
+        "ru": {
+            "label": "ORPO бета",
+            "info": "Значение параметра бета в функции потерь ORPO.",
+        },
+        "zh": {
+            "label": "ORPO beta 参数",
+            "info": "ORPO 损失函数中 beta 超参数大小。",
         },
     },
     "reward_model": {
@@ -849,6 +902,28 @@ LOCALES = {
             "value": "预览命令",
         },
     },
+    "arg_save_btn": {
+        "en": {
+            "value": "Save arguments",
+        },
+        "ru": {
+            "value": "Сохранить аргументы",
+        },
+        "zh": {
+            "value": "保存训练参数",
+        },
+    },
+    "arg_load_btn": {
+        "en": {
+            "value": "Load arguments",
+        },
+        "ru": {
+            "value": "Загрузить аргументы",
+        },
+        "zh": {
+            "value": "载入训练参数",
+        },
+    },
     "start_btn": {
         "en": {
             "value": "Start",
@@ -883,6 +958,20 @@ LOCALES = {
         "zh": {
             "label": "输出目录",
             "info": "保存结果的路径。",
+        },
+    },
+    "config_path": {
+        "en": {
+            "label": "Config path",
+            "info": "Path to config saving arguments.",
+        },
+        "ru": {
+            "label": "Путь к конфигурации",
+            "info": "Путь для сохранения аргументов конфигурации.",
+        },
+        "zh": {
+            "label": "配置路径",
+            "info": "保存训练参数的配置文件路径。",
         },
     },
     "output_box": {
@@ -995,6 +1084,17 @@ LOCALES = {
             "placeholder": "工具列表（非必填）",
         },
     },
+    "image": {
+        "en": {
+            "label": "Image (optional)",
+        },
+        "ru": {
+            "label": "Изображение (по желанию)",
+        },
+        "zh": {
+            "label": "图像（非必填）",
+        },
+    },
     "query": {
         "en": {
             "placeholder": "Input...",
@@ -1072,7 +1172,7 @@ LOCALES = {
             "value": "清空历史",
         },
     },
-    "max_shard_size": {
+    "export_size": {
         "en": {
             "label": "Max shard size (GB)",
             "info": "The maximum size for a model file.",
@@ -1112,6 +1212,20 @@ LOCALES = {
         "zh": {
             "label": "导出量化数据集",
             "info": "量化过程中使用的校准数据集。",
+        },
+    },
+    "export_device": {
+        "en": {
+            "label": "Export device",
+            "info": "Which device should be used to export model.",
+        },
+        "ru": {
+            "label": "Экспорт устройство",
+            "info": "Какое устройство следует использовать для экспорта модели.",
+        },
+        "zh": {
+            "label": "导出设备",
+            "info": "导出模型使用的设备类型。",
         },
     },
     "export_legacy_format": {
@@ -1209,7 +1323,12 @@ ALERTS = {
     "err_no_export_dir": {
         "en": "Please provide export dir.",
         "ru": "Пожалуйста, укажите каталог для экспорта.",
-        "zh": "请填写导出目录",
+        "zh": "请填写导出目录。",
+    },
+    "err_gptq_lora": {
+        "en": "Please merge adapters before quantizing the model.",
+        "ru": "Пожалуйста, объедините адаптеры перед квантованием модели.",
+        "zh": "量化模型前请先合并适配器。",
     },
     "err_failed": {
         "en": "Failed.",
@@ -1236,6 +1355,11 @@ ALERTS = {
         "ru": "Неверная схема JSON.",
         "zh": "Json 格式错误。",
     },
+    "err_config_not_found": {
+        "en": "Config file is not found.",
+        "ru": "Файл конфигурации не найден.",
+        "zh": "未找到配置文件。",
+    },
     "warn_no_cuda": {
         "en": "CUDA environment was not detected.",
         "ru": "Среда CUDA не обнаружена.",
@@ -1255,6 +1379,16 @@ ALERTS = {
         "en": "Finished.",
         "ru": "Завершено.",
         "zh": "训练完毕。",
+    },
+    "info_config_saved": {
+        "en": "Arguments have been saved at: ",
+        "ru": "Аргументы были сохранены по адресу: ",
+        "zh": "训练参数已保存至：",
+    },
+    "info_config_loaded": {
+        "en": "Arguments have been restored.",
+        "ru": "Аргументы были восстановлены.",
+        "zh": "训练参数已载入。",
     },
     "info_loading": {
         "en": "Loading model...",

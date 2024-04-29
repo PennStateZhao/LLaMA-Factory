@@ -1,4 +1,5 @@
 #!/bin/bash
+# also launch it on slave machine using slave_config.yaml
 
 CUDA_VISIBLE_DEVICES=0,1,2,3 accelerate launch \
     --config_file ../accelerate/master_config.yaml \
@@ -30,6 +31,6 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 accelerate launch \
     --num_train_epochs 3.0 \
     --max_samples 3000 \
     --val_size 0.1 \
-    --ddp_timeout 1800000 \
+    --ddp_timeout 180000000 \
     --plot_loss \
     --fp16

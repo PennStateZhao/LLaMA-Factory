@@ -18,7 +18,8 @@ If you are using a custom dataset, please provide your dataset definition in the
     "history": "the column name in the dataset containing the histories. (default: None)",
     "messages": "the column name in the dataset containing the messages. (default: conversations)",
     "system": "the column name in the dataset containing the system prompts. (default: None)",
-    "tools": "the column name in the dataset containing the tool description. (default: None)"
+    "tools": "the column name in the dataset containing the tool description. (default: None)",
+    "images": "the column name in the dataset containing the image inputs. (default: None)"
   },
   "tags (optional, used for the sharegpt format)": {
     "role_tag": "the key in the message represents the identity. (default: from)",
@@ -33,6 +34,8 @@ If you are using a custom dataset, please provide your dataset definition in the
 ```
 
 Given above, you can use the custom dataset via specifying `--dataset dataset_name`.
+
+----
 
 Currently we support dataset in **alpaca** or **sharegpt** format, the dataset in alpaca format should follow the below format:
 
@@ -83,6 +86,10 @@ For the preference datasets, the `response` column should be a string list whose
   ]
 }
 ```
+
+Remember to set `"ranking": true` for the preference datasets.
+
+----
 
 The dataset in sharegpt format should follow the below format:
 
